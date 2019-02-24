@@ -15,15 +15,6 @@ char g_sSpecialString[stylestrings_t::sSpecialString];
 // Player variables.
 bool g_bEnforceBackwards[MAXPLAYERS + 1];
 
-// Enums.
-enum
-{
-	D_Forward = 0,
-	D_Backward,
-	D_Left,
-	D_Right
-};
-
 public Plugin myinfo = {
 	name = "[shavit-style] Backwards",
 	author = "Adam & Mehis",

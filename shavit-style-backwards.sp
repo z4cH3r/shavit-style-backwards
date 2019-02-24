@@ -45,6 +45,15 @@ public Action Shavit_OnUserCmdPre(int client, int &buttons, int &impulse, float 
 	if (!IsPlayerAlive(client) || IsFakeClient(client) || !g_bEnforceBackwards[client])
 		return Plugin_Continue;
 
+	// Honor some key-blocking related behaviour from shavit-core.
+	MoveType hMoveType = GetEntityMoveType(client);
+	if(hMoveType == MOVETYPE_NOCLIP || hMoveType == MOVETYPE_LADDER || Shavit_InsideZone(client, Zone_Freestyle, -1))
+		return Plugin_Continue;
+
+	int iGroundEntity = GetEntPropEnt(client, Prop_Send, "m_hGroundEntity");
+	if (iGroundEntity != -1)
+		return Plugin_Continue;
+
 	// Backwards enforcement by Mehis (https://github.com/InfluxTimer/sm-timer/blob/master/addons/sourcemod/scripting/influx_style_backwards.sp).
 	float eye[3];
 	float velocity[3];
